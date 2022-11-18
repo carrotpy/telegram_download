@@ -1,0 +1,24 @@
+[03:11:08] INFO     Connecting to 149.154.167.51:443/TcpFull...                                                                   mtprotosender.py:222
+           WARNING  Attempt 1 at connecting failed: OSError: [Errno 51] Network is unreachable                                    mtprotosender.py:282
+[03:11:09] WARNING  Attempt 2 at connecting failed: OSError: [Errno 51] Network is unreachable                                    mtprotosender.py:282
+[03:11:10] WARNING  Attempt 3 at connecting failed: OSError: [Errno 51] Network is unreachable                                    mtprotosender.py:282
+[03:11:11] WARNING  Attempt 4 at connecting failed: OSError: [Errno 51] Network is unreachable                                    mtprotosender.py:282
+[03:11:12] WARNING  Attempt 5 at connecting failed: OSError: [Errno 51] Network is unreachable                                    mtprotosender.py:282
+[03:11:13] WARNING  Attempt 6 at connecting failed: OSError: [Errno 51] Network is unreachable                                    mtprotosender.py:282
+[03:11:14] WARNING  connection failed                                                                                           media_downloader.py:50
+[03:11:21] INFO     Connecting to 149.154.167.51:443/TcpFull...                                                                   mtprotosender.py:222
+           WARNING  Attempt 1 at connecting failed: OSError: [Errno 51] Network is unreachable                                    mtprotosender.py:282
+[03:11:22] WARNING  Attempt 2 at connecting failed: OSError: [Errno 51] Network is unreachable                                    mtprotosender.py:282
+[03:11:23] WARNING  Attempt 3 at connecting failed: OSError: [Errno 51] Network is unreachable                                    mtprotosender.py:282
+[03:11:24] WARNING  Attempt 4 at connecting failed: OSError: [Errno 51] Network is unreachable                                    mtprotosender.py:282
+[03:11:25] WARNING  Attempt 5 at connecting failed: OSError: [Errno 51] Network is unreachable                                    mtprotosender.py:282
+[03:11:26] WARNING  Attempt 6 at connecting failed: OSError: [Errno 51] Network is unreachable                                    mtprotosender.py:282
+[03:11:27] WARNING  connection failed                                                                                           media_downloader.py:50
+[03:11:35] INFO     Connecting to 149.154.167.51:443/TcpFull...                                                                   mtprotosender.py:222
+           WARNING  Attempt 1 at connecting failed: OSError: [Errno 51] Network is unreachable                                    mtprotosender.py:282
+[03:11:36] WARNING  Attempt 2 at connecting failed: OSError: [Errno 51] Network is unreachable                                    mtprotosender.py:282
+[03:11:37] WARNING  Attempt 3 at connecting failed: OSError: [Errno 51] Network is unreachable                                    mtprotosender.py:282
+[03:11:38] WARNING  Attempt 4 at connecting failed: OSError: [Errno 51] Network is unreachable                                    mtprotosender.py:282
+[03:11:39] WARNING  Attempt 5 at connecting failed: OSError: [Errno 51] Network is unreachable                                    mtprotosender.py:282
+[03:11:40] WARNING  Attempt 6 at connecting failed: OSError: [Errno 51] Network is unreachable                                    mtprotosender.py:282
+[03:11:41] WARNING  connection failed                                                                                           media_downloader.py:50
