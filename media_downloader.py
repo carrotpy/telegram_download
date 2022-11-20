@@ -79,7 +79,7 @@ class Media_downloader():
         
         try:
             #iterating through the messages
-            async for d in  self.client.iter_messages(channel, reverse=False):
+            async for d in  self.client.iter_messages(channel, reverse=True):
                 if d.media and get_extension (d.media) in alloweded_media_list: # checking for the alllowded list
                     if not  self._is_exist(chat_id=str(d.chat_id),msg_id=d.id,action='check_exist'):# checking that if the data is already downloaded
                         filename=await d.download_media(file=f'{os.getcwd()}\\{channel}') #download media
