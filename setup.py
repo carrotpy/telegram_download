@@ -42,7 +42,9 @@ def main():
         CONSTRAINT download_audict_pkey PRIMARY KEY (channel_id, message_id)
     );''')
     except Exception as e:
-        print({e})
+        logging.info({e})
+    finally:
+        engine.dispose()
     
         
     pass
