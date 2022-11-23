@@ -52,13 +52,12 @@ class Media_downloader():
         for channel in channel_ids:
             os.makedirs(f'{os.getcwd()}\\{channel}',exist_ok=True)
             self.client= await self.client_connect(self.api_id_config,self.api_hash_config)
-            if self.client and history_data:
-                print('history')
-                await self.history_data(channel)
-            else:
-                print('success data')
-                msg_id=self._is_exist(chat_id=channel,msg_id=1,action='message_id')
+            msg_id=self._is_exist(chat_id=channel,msg_id=1,action='message_id')
+            if self.client:
+                print('----> msg id',msg_id)
+                print('data')
                 await self.successive_data(message_id=msg_id,channel=channel)
+            #need to add the failed msg_id rerun
         self.engine.dispose()
               
     async def client_connect(self,api_id:int,api_hash:str):
@@ -74,22 +73,22 @@ class Media_downloader():
             logging.warning('connection failed')
             return False
         
-    async def history_data(self,channel:str):
-        alloweded_media_list=['.pdf','.mp4','.jpg']
+    # async def history_data(self,channel:str):
+    #     alloweded_media_list=['.pdf','.mp4','.jpg']
         
-        try:
-            #iterating through the messages
-            async for d in  self.client.iter_messages(channel, reverse=True):
-                if d.media and get_extension (d.media) in alloweded_media_list: # checking for the alllowded list
-                    if not  self._is_exist(chat_id=str(d.chat_id),msg_id=d.id,action='check_exist'):# checking that if the data is already downloaded
-                        filename=await d.download_media(file=f'{os.getcwd()}\\{channel}') #download media
-                        if filename :
-                            d=self.update_audict(file_nm=filename.split('\\')[-1],chat_id=str(d.chat_id),msg_id=d.id,date=str(d.date),status='Success',channel_nm=channel)
-                        else:
-                            d=self.update_audict(file_nm=filename.split('\\')[-1],chat_id=d.chat_id,msg_id=d.id,date=str(d.date),status='Fail',channel_nm=channel)
+    #     try:
+    #         #iterating through the messages
+    #         async for d in  self.client.iter_messages(channel, reverse=True):
+    #             if d.media and get_extension (d.media) in alloweded_media_list: # checking for the alllowded list
+    #                 if not  self._is_exist(chat_id=str(d.chat_id),msg_id=d.id,action='check_exist'):# checking that if the data is already downloaded
+    #                     filename=await d.download_media(file=f'{os.getcwd()}\\{channel}') #download media
+    #                     if filename :
+    #                         d=self.update_audict(file_nm=filename.split('\\')[-1],chat_id=str(d.chat_id),msg_id=d.id,date=str(d.date),status='Success',channel_nm=channel)
+    #                     else:
+    #                         d=self.update_audict(file_nm=filename.split('\\')[-1],chat_id=d.chat_id,msg_id=d.id,date=str(d.date),status='Fail',channel_nm=channel)
                         
-        except Exception as e:
-            print(traceback.format_exc())
+    #     except Exception as e:
+    #         print(traceback.format_exc())
     def _is_exist(self,chat_id:str,msg_id:Optional[int],action:str):
         if action=='check_exist':
             try:
