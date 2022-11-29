@@ -11,6 +11,8 @@ from  sqlalchemy import create_engine
 import asyncio
 import traceback
 from utils import decode_pass
+import zipfile
+import datetime
 
 config=yaml.load(open('config.yaml'),Loader=yaml.FullLoader)
 
@@ -51,12 +53,16 @@ class Media_downloader():
         
         for channel in channel_ids:
             os.makedirs(f'{os.getcwd()}\\{channel}',exist_ok=True)
+            self.zf=zipfile.ZipFile(f'channel{datetime.datetime.now().date()}.zip', "a")
+
             self.client= await self.client_connect(self.api_id_config,self.api_hash_config)
             msg_id=self._is_exist(chat_id=channel,msg_id=1,action='message_id')
             if self.client:
                 print('----> msg id',msg_id)
                 print('data')
                 await self.successive_data(message_id=msg_id,channel=channel)
+                self.zf.close()
+
             #need to add the failed msg_id rerun
         self.engine.dispose()
               
@@ -72,7 +78,7 @@ class Media_downloader():
         except:
             logging.warning('connection failed')
             return False
-        
+    # commeting out since the its not needed further      
     # async def history_data(self,channel:str):
     #     alloweded_media_list=['.pdf','.mp4','.jpg']
         
@@ -139,6 +145,7 @@ class Media_downloader():
                         filename=await d.download_media(file=f'{os.getcwd()}\\{channel}') #download media
                         if filename :
                             d=self.update_audict(file_nm=filename.split('\\')[-1],chat_id=str(d.chat_id),msg_id=d.id,date=str(d.date),status='Success',channel_nm=channel)
+                            self.zf.write(filename)
                         else:
                             d=self.update_audict(file_nm=filename.split('\\')[-1],chat_id=d.chat_id,msg_id=d.id,date=str(d.date),status='Fail',channel_nm=channel)
         except: 
@@ -155,6 +162,8 @@ if __name__ =='__main__':
     hist_flag=config['HISTORY_FLAG']
     executer=Media_downloader()
     asyncio.run(executer.main(channel_ids,hist_flag,config))
+
+
     
     
 
